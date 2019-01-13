@@ -17,12 +17,21 @@
   pruneopts = "UT"
   revision = "97f21459c570863b3ffd2baa7dfeef49a77530fa"
 
+[[projects]]
+  branch = "master"
+  digest = "1:1a8a6a5147075f8ab9f58f6cef375f3d94c8fe2de16c75916bf5b887e05466e2"
+  name = "github.com/wutchzone/fileserver-service"
+  packages = ["pkg/file-server"]
+  pruneopts = "UT"
+  revision = "8c32d2645f5a925b061118b35af24f48597cfc1d"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
     "github.com/go-chi/chi",
     "github.com/wutchzone/api-response",
+    "github.com/wutchzone/fileserver-service/pkg/file-server",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
