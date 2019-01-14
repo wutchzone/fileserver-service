@@ -7,6 +7,7 @@ import (
 	"github.com/wutchzone/fileserver-service/pkg/file-server"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"path"
 )
 
@@ -47,7 +48,7 @@ func readDirectory(path string, r *http.Request) ([]localfile.File, error) {
 	for _, item := range d {
 		files = append(files, *localfile.NewFile(
 			item.Name(),
-			fmt.Sprintf("https://%s/api/%s" ,r.Host, item.Name()),
+			fmt.Sprintf("%s/api/%s", BaseURL, url.PathEscape(item.Name())),
 			"",
 		))
 	}
