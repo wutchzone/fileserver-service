@@ -25,7 +25,7 @@ func HandleGetAll(w http.ResponseWriter, r *http.Request) {
 
 // HandleGetOne file
 func HandleGetOne(w http.ResponseWriter, r *http.Request) {
-	n := chi.URLParam(r, "name")
+	n, _ := url.PathUnescape(chi.URLParam(r, "name"))
 	f, err := ioutil.ReadFile(path.Join(FileFolder, n))
 
 	if err != nil {
@@ -48,7 +48,7 @@ func readDirectory(path string, r *http.Request) ([]localfile.File, error) {
 	for _, item := range d {
 		files = append(files, *localfile.NewFile(
 			item.Name(),
-			fmt.Sprintf("%s/api/%s", BaseURL, url.PathEscape(item.Name())),
+			fmt.Sprintf("%s/%s", BaseURL, url.PathEscape(item.Name())),
 			"",
 		))
 	}
